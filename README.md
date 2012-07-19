@@ -2,7 +2,7 @@ ragtime-migrator
 ================
 
 ragtime-migrator adds a few functions to [ragtime](https://github.com/weavejester/ragtime) which make working with SQL Databases easier. 
-It also provides an implementation a specific implementation for PostgreSQL databases.
+It also provides a specific implementation for PostgreSQL databases.
 
 This is pretty much for my own use, but maybe someone will find it useful.
 
@@ -33,8 +33,8 @@ For all other migration functions, such as rollbacks you can still use the stand
 ## PostgreSQL
 
 The ragtime.migrator.postgres library provides a  `PgSqlDatabase` record that can be used
-to wrap a Postgres database connection map. `PgSqlDatabase` has a specific implementation which enables the use with Postgres Databases. 
-This main feature is that it uses a timestamp instead of date type in the migrations table.
+to wrap a Postgres database connection map. `PgSqlDatabase` has a specific implementation of the `Migrateable` protocol which enables the use with Postgres Databases. 
+This main difference between `PgSqlDatabase` and `ragtime.sql.database.SqlDatabase` is that `PgSqlDatabase` uses a timestamp instead of date type in the migrations table.
 
     #ragtime.migrator.postgres.PgSqlDatabase{
           :classname "org.postgresql.Driver"
