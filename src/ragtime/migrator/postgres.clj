@@ -43,3 +43,24 @@
         ["SELECT id FROM ragtime_migrations ORDER BY created_at"]
         (vec (map :id results)))))
  )
+
+(defrecord JndiPgSqlDatabase [name]
+  ragtime/Migratable
+  (add-migration-id [db id]
+    (sql/with-connection db
+      (ensure-migrations-table-exists db)
+      (sql/insert-values migrations-table
+                         [:id :created_at] [(str id) (get-timestamp-now)])))
+  
+  (remove-migration-id [db id]
+    (sql/with-connection db
+      (ensure-migrations-table-exists db)
+      (sql/delete-rows migrations-table ["id = ?" id])))
+
+  (applied-migration-ids [db]
+    (sql/with-connection db
+      (ensure-migrations-table-exists db)
+      (sql/with-query-results results
+        ["SELECT id FROM ragtime_migrations ORDER BY created_at"]
+        (vec (map :id results)))))
+ )

@@ -1,4 +1,4 @@
-(defproject ragtime-migrator "0.1.0-SNAPSHOT"
+(defproject ragtime-migrator "0.2.0-SNAPSHOT"
   :description "Add-on for ragtime to provide some useful SQL specific migration functions"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
